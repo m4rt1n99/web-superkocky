@@ -1,14 +1,11 @@
 import type { RequestHandler } from './$types';
-import { readdir } from 'node:fs/promises';
 import { json } from '@sveltejs/kit';
-
+import { supabase } from "$lib/server/supabaseClient";
 export const GET: RequestHandler = async ({ url }) => {
-    // Get folder size
-    const length = (await readdir("$lib/images")).length;
-    // Choose random image from folder
-    const random_image = Math.floor(Math.random() * (length+1));
-    // Get image url and build JSON response
-    const json_res = { id: random_image, url: `${url.origin}/img/${random_image}.webp` };
-    // retunr JSON object
-    return json(json_res);
+    const { data, error } = await supabase
+
+    .from('random_image_data')
+    .select("*")
+    .limit(1);
+    return json(data ? data[0] : {})
 };

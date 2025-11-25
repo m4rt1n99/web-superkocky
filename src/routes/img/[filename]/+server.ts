@@ -1,19 +1,23 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
-import { readFile } from 'node:fs/promises';
-
-const image_path = "$lib/images"
+import { supabase } from "$lib/server/supabaseClient";
 
 export const GET: RequestHandler = async ({ params }) => {
   let name = params.filename;
 
-  if (!name || name.includes('..') || name.startsWith('/') || name.includes(".") && !name.includes(".webp")) {
+  if (!name || name.includes('.') || name.startsWith('/')) {
     return error(400);
   }
 
-  if(!name.includes(".webp")){
-    name += ".webp"
+  const { data } = await supabase
+    .from('image_data')
+    .select("*")
+    .eq("id", params.filename)
+    .limit(1);
+
+  if(data){
+    return redirect(303, data[0].url)
+  } else {
+    return error(500)
   }
-  let file = await readFile(`${image_path}/${name}`)
-  return new Response(file)
 };
