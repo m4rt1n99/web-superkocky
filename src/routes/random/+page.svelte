@@ -12,7 +12,7 @@
 	};
 
 	const rating = async (action: string, id: number) => {
-		const res = await fetch('/api/rating', {
+		await fetch('/api/rating', {
 			method: 'POST',
 			body: JSON.stringify({'action': action, 'arg_id': id})
 		});
