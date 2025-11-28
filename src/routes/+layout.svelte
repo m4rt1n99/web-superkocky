@@ -7,7 +7,6 @@
 	const links: Record<string,string> = {
 		"Home": "/",
 		"Random": "/random",
-		"Cat of the day": "/cotd",
 		"Leaderboard": "/leaderboard",
 		"Contact": "/contact"
 
