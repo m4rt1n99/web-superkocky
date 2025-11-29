@@ -2,7 +2,7 @@
 </script>
 
 <div class="block m-auto">
-    <div class="flex flex-col">
+    <div class="flex flex-col text-center">
     <h1 class="text-7xl font-normal">SUPER KOČKY!!</h1>
     <p class="mt-5">Prozkoumej úžasné a skvělé obrázky kočiček z naší rozsáhlé databáze!!</p>
     <div class="align-center flex justify-center gap-10 mt-10 font-stack-sans font-normal">
