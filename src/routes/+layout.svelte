@@ -17,6 +17,7 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<meta name="darkreader-lock">
 </svelte:head>
 
 <div class="flex min-h-screen flex-col">
